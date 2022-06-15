@@ -15,6 +15,8 @@
                 <tr>
                     <th>Full Name</th>
                     <th>Email</th>
+                    <th><button v-on:click="showUserAddForm()" style="position: relative; z-index: 10" class="btn btn-primary pull-right"><span class="ion-plus-circled"></span> New User</button>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,6 +24,7 @@
                     <tr>
                         <td>{{ $user->full_name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td><button v-on:click="showUserAddForm()" style="position: relative; z-index: 10" class="btn btn-success pull-right"><span class="ion"></span> Edit User</button></td>
                     </tr>
                 @endforeach
                 </tbody>

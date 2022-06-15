@@ -103,6 +103,35 @@
         <div class="clearfix"></div>
     </footer>
 </div>
+{{-- New Post--}}
+<div style="z-index: 20" class="popup-form new-post">
+    <header>
+        <p class="pull-left">New Post</p>
+        <div class="actions pull-right">
+            <i title="Minimize" class="ion-minus-round"></i>
+            <i title="Close" class="ion-close-round"></i>
+        </div>
+        <div class="clearfix"></div>
+    </header>
+    <section>
+        <form>
+            <span v-if="msg.success != null" class="status-msg success-msg">@{{ msg.success }}</span>
+            <span v-if="msg.error != null" class="status-msg error-msg">@{{ msg.error }}</span>
+            <div class="col-xs-12 no-side-padding">
+                <label>Subject:</label>
+                <input v-model="newPost.subject" type="text" class="form-control first">
+            </div>
+            <label>Body:</label>
+            <textarea v-model="newPost.body" rows="5" class="form-control"></textarea>
+            <br>
+            <span class="count pull-right">@{{ 250 - newPost.description.length }}</span>
+        </form>
+    </section>
+    <footer>
+        <a v-on:click="createPost(project.user_id, project.id)" href="" class="btn btn-primary pull-right">Save</a>
+        <div class="clearfix"></div>
+    </footer>
+</div>
 {{-- Update Task--}}
 <div style="z-index: 20" class="popup-form update-task">
     <header>
@@ -149,7 +178,6 @@
             <div class="col-xs-4 no-side-padding">
                 <label>State:</label>
                 <select v-model="currentTask.state" class="form-control">
-                    <option>backlog</option>
                     <option selected>progress</option>
                     <option>testing</option>
                     <option>complete</option>
@@ -162,7 +190,37 @@
         </form>
     </section>
     <footer>
-        <a v-on:click="updateTask(currentTask.id)" href="" class="btn btn-primary pull-right">Update</a>
+        <a v-on:click="updateTask(currentTask.id)" class="btn btn-primary pull-right">Update</a>
+        <div class="clearfix"></div>
+    </footer>
+</div>
+{{-- Update Post--}}
+<div style="z-index: 20" class="popup-form update-post">
+    <header>
+        <p class="pull-left">Update Post</p>
+        <div class="actions pull-right">
+            <i title="Minimize" class="ion-minus-round"></i>
+            <i title="Close" class="ion-close-round"></i>
+        </div>
+        <div class="clearfix"></div>
+    </header>
+    <section>
+        <form>
+            <span v-if="msg.success != null" class="status-msg success-msg">@{{ msg.success }}</span>
+            <span v-if="msg.error != null" class="status-msg error-msg">@{{ msg.error }}</span>
+            <div class="col-xs-12 no-side-padding">
+                <label>Subject:</label>
+                <input v-model="currentPost.subject" type="text" class="form-control first">
+            </div>
+            
+            <label>Body:</label>
+            <textarea v-model="currentPost.body" rows="5" class="form-control"></textarea>
+            <br>
+            <span class="count pull-right">@{{ 250 - currentPost.body.length }}</span>
+        </form>
+    </section>
+    <footer>
+        <a v-on:click="updatePost(currentPost.id)" class="btn btn-primary pull-right">Update</a>
         <div class="clearfix"></div>
     </footer>
 </div>
@@ -204,7 +262,7 @@
         </form>
     </section>
     <footer>
-        <a v-on:click="updateCredential(currentCredential.id)" href="" class="btn btn-primary pull-right">Update</a>
+        <a v-on:click="updateCredential(currentCredential.id)" class="btn btn-primary pull-right">Update</a>
         <div class="clearfix"></div>
     </footer>
 </div>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use App\Project;
+use App\Post;
 use App\Task;
 use App\Credential;
 use App\Helpers\Helpers;
@@ -78,6 +79,7 @@ class ProjectsController extends BaseController {
 		$project = Project::find($id);
 		$project->tasks = Task::where('project_id', $id)->get();
 		$project->credentials = Credential::where('project_id', $id)->get();
+		$project->posts = Post::where('project_id', $id)->get();
 
 		return $this->setStatusCode(200)->makeResponse('Project was successfully found', $project);
 	}

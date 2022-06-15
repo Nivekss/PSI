@@ -62,6 +62,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }   
 
     /**
+     * Return posts related to a give user
+     */
+    public function posts() {
+        return $this->hasMany('App\Post','user_id');
+    }
+
+    /**
      * Return the related tasks for a given user
      */
     public function tasks(){

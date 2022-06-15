@@ -42,6 +42,10 @@ class Project extends Model {
         return $this->hasMany('App\Upload', 'project_id');
     }
 
+	public function posts() {
+        return $this->hasMany('App\Post', 'project_id');
+    }
+
 	/**
 	 * Checks if teh currently Auth user
 	 * is the owner of the project.

@@ -5,6 +5,8 @@ var project = new Vue({
         newProject: {name: null, project_id: null},
         newTask: {name: null, weight: null, state: null, priority: null, description: null},
         currentTask: {name: null, weight: null, state: null, priority: null, description: null},
+        newPost: {subject: null, body: null},
+        currentPost: {subject: null, body: null},
         newCredential: {type: null, name: null, hostname: null, username: null, password: null, port: null},
         currentCredential: {type: null, name: null, hostname: null, username: null, password: null, port: null},
         msg: {success: null, error: null},
@@ -33,12 +35,20 @@ var project = new Vue({
             var finalNum = 0;
 
             for (var i = 0; i < tasks.length; i++){
-                if( tasks[i].state != "backlog" ){
                     finalNum++;
-                }
             }
 
             return finalNum;
+        },
+        numPosts: function(){
+            var posts = this.project.posts;
+            var finalPosts = 0;
+
+            for (var i = 0; i < posts.length; i++){
+                finalPosts++;
+            }
+
+            return finalPosts;
         },
         numProgressTasks: function(){
             var tasks = this.project.tasks;
@@ -70,18 +80,6 @@ var project = new Vue({
 
             for (var i = 0; i < tasks.length; i++){
                 if( tasks[i].state == "complete" ){
-                    finalNum++;
-                }
-            }
-
-            return finalNum;
-        },
-        numBacklogTasks: function(){
-            var tasks = this.project.tasks;
-            var finalNum = 0;
-
-            for (var i = 0; i < tasks.length; i++){
-                if( tasks[i].state == "backlog" ){
                     finalNum++;
                 }
             }
@@ -157,7 +155,7 @@ var project = new Vue({
         },
         deleteTask: function(taskId){
             showSheet();
-            makePrompt("Are you sure you want to delete this task?","","No now", "Yes");
+            makePrompt("Are you sure you want to delete this task?","","Cancel", "Yes");
 
             $("#cancel-btn").click(function(){
                 closePrompt();
@@ -247,6 +245,98 @@ var project = new Vue({
                 }
             });
         },
+        createPost: function(user_id, project_id){
+
+
+            $.ajax({
+                type: 'POST',
+                url: window.baseurl + "/api/posts/"+ user_id +"/"+ project_id,
+                data: project.newPost,
+                error: function(e) {
+                    var response = jQuery.parseJSON(e.responseText);
+
+                    project.msg.success = null;
+                    project.msg.error = response.message;
+
+                    return false;
+                },
+
+                success: function(result){
+                    project.msg.success = result.message;
+                    project.msg.error = null;
+
+                    project.project.posts.push(result.data);
+                    Vue.nextTick(function () {
+                        megaMenuInit();
+                    });
+
+                    project.newPost.body = null;
+
+                    $('.popup-form.new-task select option:first-child').attr("selected", "selected");
+                    $('.popup-form.new-task').find('input[type=text],textarea,select').filter(':visible:first').focus();
+                }
+            });
+        },
+        deletePost: function(postId){
+            showSheet();
+            makePrompt("Are you sure you want to delete this post?","","Cancel", "Yes");
+
+            $("#cancel-btn").click(function(){
+                closePrompt();
+            });
+
+            $("#confirm-btn").click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: window.baseurl + "/api/posts/"+postId,
+                    data: {_method: "delete"},
+                    success: function(){
+                        $(".post-"+postId).hide();
+                        closePrompt();
+                    },
+                    error: function(e){
+                        closePrompt();
+                    }
+                });
+            });
+        },
+        showPostCreateForm: function(){
+            this.msg.success = null;
+            this.msg.error = null;
+            $(".popup-form.new-post").show();
+            $(".popup-form.new-post .first").focus();
+        },
+        editPost: function(post){
+            this.msg.success = null;
+            this.msg.error = null;
+            this.currentPost = post;
+            $(".popup-form.update-post").show();
+            $(".popup-form.update-post .first").focus();
+        },
+        updatePost: function(postId){
+
+
+            this.currentPost._method = "put";
+
+            $.ajax({
+                type: 'POST',
+                url: window.baseurl + "/api/posts/"+ postId,
+                data: project.currentPost,
+                error: function(e) {
+                    var response = jQuery.parseJSON(e.responseText);
+
+                    project.msg.success = null;
+                    project.msg.error = response.message;
+
+                    return false;
+                },
+                success: function(result){
+                    project.msg.success = result.message;
+                    project.msg.error = null;
+                }
+            });
+        },
+    
         createCredential: function(user_id, project_id){
 
 

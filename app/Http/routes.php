@@ -53,6 +53,12 @@ Route::group(['prefix' => '/api/'], function()
     Route::post('projects/{id}/{email}/invite', 'ProjectsController@invite');
     Route::delete('projects/{id}/{member_id}/remove', 'ProjectsController@removeMember' );
 
+    // ANNOUNCEMENT
+    Route::get('posts','PostsController@getPosts');
+    Route::post('posts/{user_id}/{project_id}','PostsController@storePost');
+    Route::delete('posts/{id}', 'PostsController@removePost');
+    Route::put('posts/{id}', 'PostsController@updatePost');
+    
 	// TASK
     Route::get('tasks', 'TasksController@getAllUserOpenTasks');
     Route::post('tasks/{client_id}/{project_id}', 'TasksController@storeTask');
