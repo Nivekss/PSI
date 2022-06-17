@@ -26,7 +26,7 @@
                         <td>{{ $user->email }}</td>
                         <td>
                         <button v-on:click="removeUser()" style="float: right" class="btn btn-danger"><span class="ion-minus-circled"></span> Delete</button>
-                        <button v-on:click="showUserEditForm()" style="margin: 0 10px; float: right" class="btn btn-success"><span class="ion"></span> Edit</button>
+                        <button v-on:click="showUserEditForm({{$user}})" style="margin: 0 10px; float: right" class="btn btn-success"><span class="ion"></span> Edit</button>
                         </td>
                     </tr>
                 @endforeach
@@ -53,7 +53,30 @@
 			</form>
 		</section>
 		<footer>
-			<a v-on:click="create(admin, true)" class="btn btn-primary pull-right">Create User</a>
+			<a v-on:click="create(user, true)" class="btn btn-primary pull-right">Create User</a>
+			<div class="clearfix"></div>
+		</footer>
+	</div>
+
+    <div class="popup-form edit-user">
+		<header>
+			<p class="pull-left">Edit User</p>
+			<div class="actions pull-right">
+				<i title="Minimze "class="ion-minus-round"></i>
+				<i title="Close" class="ion-close-round"></i>
+			</div>
+			<div class="clearfix"></div>
+		</header>
+		<section>
+			<form>
+				<span v-if="msg.success != null" class="status-msg success-msg">@{{ msg.success }}</span>
+				<span v-if="msg.error != null" class="status-msg error-msg">@{{ msg.error }}</span>
+				<input v-model="user.email" placeholder="Email" type="text" class="form-control first">
+				<input v-model="user.password" placeholder="Password" type="text" class="form-control">
+			</form>
+		</section>
+		<footer>
+			<a v-on:click="edit(user, true)" class="btn btn-primary pull-right">Edit User</a>
 			<div class="clearfix"></div>
 		</footer>
 	</div>

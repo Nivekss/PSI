@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('TasksTableSeeder');
 		$this->command->info('Tasks table seeded!');
 
-		$this->command->info('Test Account: EMAIL: test@ribbbon.com PASSWORD: secret');
+		$this->command->info('Test Account: EMAIL: test@PSI.com PASSWORD: secret');
 
 	}
 

@@ -61,7 +61,7 @@ public function addUser(Request $request)
 
     if ( Auth::attempt(array('email' => $email, 'password' => $password)) ) {
         Helpers::sendWelcomeMail();
-        return Redirect::to('Dashboard');
+        return Redirect::to('hud');
     }
     return Redirect::back()->withErrors($validator);
 }	

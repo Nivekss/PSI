@@ -1,5 +1,5 @@
 {{--<a href="{{ route('home') }}" class="logo-section">--}}
-	{{--<img src="{{\App\Helpers\Helpers::logoUrl()}}" alt="Ribbbon">--}}
+	{{--<img src="{{\App\Helpers\Helpers::logoUrl()}}" alt="PSI">--}}
 {{--</a>--}}
 
 <div class="user-section">
@@ -15,7 +15,7 @@
 {!! Form::close() !!}	
 
 <div class="menu">
-	<a class="<?php echo ( Request::is('Dashboard') ) ? 'active' : 'false'; ?> <?php echo ( Request::is('/') ) ? 'active' : 'false'; ?>" href="{{ route('home') }}"><i class="icon ion-ios-home"></i> Dashboard</a>
+	<a class="<?php echo ( Request::is('hud') ) ? 'active' : 'false'; ?> <?php echo ( Request::is('/') ) ? 'active' : 'false'; ?>" href="{{ route('home') }}"><i class="icon ion-ios-home"></i> Hud</a>
 	<a class="<?php echo ( Request::is('clients') ) ? 'active' : 'false'; ?>" href="{{ route('clients') }}"><i class="icon ion-person"></i> Clients</a>
 	<a class="<?php echo ( Request::is('profile') ) ? 'active' : 'false'; ?>" href="{{ route('profile') }}"><i class="icon ion-gear-b"></i> Settings</a>
 	<a href="{{ route('logout') }}"><i class="icon ion-android-exit"></i> Logout</a>

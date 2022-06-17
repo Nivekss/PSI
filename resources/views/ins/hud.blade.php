@@ -4,11 +4,11 @@
 	<div class="row" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml"
 		 xmlns:v-on="http://www.w3.org/1999/xhtml">
 		<div class="col-xs-12 page-title-section">
-			<h1 class="pull-left">Dashboard</h1>
+			<h1 class="pull-left">Hud</h1>
 		</div>
 	</div>
 
-	<div id="Dashboard" class="row">
+	<div id="hud" class="row">
         <div class="col-xs-12 col-sm-4">
             <div class="jumbotron text-center">
                 <p class="dim">Clients</p>
@@ -129,6 +129,6 @@
 			<div class="clearfix"></div>
 		</footer>
 	</div>
-    <script src="{{ asset('assets/js/controllers/Dashboard.js') }}"></script>
+    <script src="{{ asset('assets/js/controllers/hud.js') }}"></script>
 
 @stop()

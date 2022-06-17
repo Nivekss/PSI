@@ -55,7 +55,7 @@ class UsersController extends BaseController {
 					return redirect()->action('AdminController@index');
 				}
 				else {
-					return Redirect::to('Dashboard');
+					return Redirect::to('hud');
 				}		
 			}else{				
 				$validator->getMessageBag()->add('input', 'Incorrect email or password');
@@ -98,7 +98,7 @@ class UsersController extends BaseController {
 
 		if ( Auth::attempt(array('email' => $email, 'password' => $password)) ) {
 			Helpers::sendWelcomeMail();
-			return Redirect::to('Dashboard');
+			return Redirect::to('hud');
 		}
 
 		return Redirect::back()->withErrors($validator);

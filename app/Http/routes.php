@@ -19,7 +19,7 @@ Route::post('resetPassword/{id}','UsersController@resetPassword');
 //----------------- Auth routes
 Route::group(array('before' => 'auth'), function()
 {
-	Route::get('Dashboard', 'HomeController@index')->name('Dashboard');
+	Route::get('hud', 'HomeController@index')->name('hud');
 	Route::get('search', 'HomeController@search')->name('search');
 	Route::get('profile', 'UsersController@index')->name('profile');
 	Route::get('clients', 'ClientsController@index')->name('clients');

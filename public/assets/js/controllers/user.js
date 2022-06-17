@@ -81,6 +81,15 @@ var userObj = new Vue({
             $(".new-user").show();
             $(".new-user .first").focus();
         },
+        showUserEditForm: function(currentUser){
+            this.user.email = currentUser.email;
+            this.user.password = currentUser.password;
+            this.msg.success = null;
+            this.msg.error = null;
+            this.user = null;
+            $(".edit-user").show();
+            $(".edit-user .first").focus();
+        },
         delete: function(){
             showSheet();
             makePrompt("Are you sure you want to delete your account","This action is irreversible","No now", "Yes");
