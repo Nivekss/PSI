@@ -46,7 +46,7 @@
             <div class="main-section">
                 <div class="pull-right">
                     <button v-on:click="showTaskCreateForm()" style="position: relative; z-index: 10" class="btn btn-primary"><span class="ion-plus-circled"></span> New Task</button>
-                    <button v-on:click="showPostCreateForm()" style="position: relative; z-index: 10" class="btn btn-success"><span class="ion-plus-circled"></span> New Post</button>
+                    <button v-on:click="showPostCreateForm()" style="position: relative; z-index: 10" class="btn btn-info"><span class="ion-plus-circled"></span> New Post</button>
                 </div>
                 <div class="mega-menu mega-menu-tab">
                     <div class="links">

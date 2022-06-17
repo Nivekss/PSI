@@ -2,7 +2,8 @@
 
 @section('content')
 
-    <div class="row">
+<div id="user">
+<div class="row">
         <div class="col-xs-12">
             <h1>Admin</h1>
             <p>Number of users: <span class="badge">{{ $n_users  }}</span></p>
@@ -15,8 +16,7 @@
                 <tr>
                     <th>Full Name</th>
                     <th>Email</th>
-                    <th><button v-on:click="showUserAddForm()" style="position: relative; z-index: 10" class="btn btn-primary pull-right"><span class="ion-plus-circled"></span> New User</button>
-                    </th>
+                    <th><button v-on:click="showCreateForm()" style="position: relative; z-index: 10" class="btn btn-primary pull-right"><span class="ion-plus-circled"></span> New User</button></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -24,12 +24,41 @@
                     <tr>
                         <td>{{ $user->full_name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td><button v-on:click="showUserAddForm()" style="position: relative; z-index: 10" class="btn btn-success pull-right"><span class="ion"></span> Edit User</button></td>
+                        <td>
+                        <button v-on:click="removeUser()" style="float: right" class="btn btn-danger"><span class="ion-minus-circled"></span> Delete</button>
+                        <button v-on:click="showUserEditForm()" style="margin: 0 10px; float: right" class="btn btn-success"><span class="ion"></span> Edit</button>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+    {{-- HIDDEN --}}
+	<div class="popup-form new-user">
+		<header>
+			<p class="pull-left">New User</p>
+			<div class="actions pull-right">
+				<i title="Minimze "class="ion-minus-round"></i>
+				<i title="Close" class="ion-close-round"></i>
+			</div>
+			<div class="clearfix"></div>
+		</header>
+		<section>
+			<form>
+				<span v-if="msg.success != null" class="status-msg success-msg">@{{ msg.success }}</span>
+				<span v-if="msg.error != null" class="status-msg error-msg">@{{ msg.error }}</span>
+				<input v-model="user.email" placeholder="Email" type="text" class="form-control first">
+				<input v-model="user.password" placeholder="Password" type="text" class="form-control">
+			</form>
+		</section>
+		<footer>
+			<a v-on:click="create(admin, true)" class="btn btn-primary pull-right">Create User</a>
+			<div class="clearfix"></div>
+		</footer>
+	</div>
+</div>
+     <script src="{{ asset('assets/js/controllers/user.js') }}"></script>
+
 
 @stop()

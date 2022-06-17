@@ -1,5 +1,5 @@
-var hud = new Vue({
-    el: '#hud',
+var Dashboard = new Vue({
+    el: '#Dashboard',
     data: {
         clients: 0,
         projects: [],
@@ -16,28 +16,28 @@ var hud = new Vue({
     methods: {
         getClients: function(){
             $.get( window.baseurl + "/api/clients/true", function( results ) {
-                hud.clients = results.data.length;
+                Dashboard.clients = results.data.length;
             }).fail(function(e){
                 console.log( "error "+ e );
             });
         },
         getProjects: function(){
             $.get( window.baseurl + "/api/projects", function( results ) {
-                hud.projects = results.data;
+                Dashboard.projects = results.data;
             }).fail(function(e){
                 console.log( "error "+ e );
             });
         },
         getSharedProjects: function(){
             $.get( window.baseurl + "/api/projects/shared", function( results ) {
-                hud.sharedProjects = results.data;
+                Dashboard.sharedProjects = results.data;
             }).fail(function(e){
                 console.log( "error "+ e );
             });
         },
         getTasks: function(){
             $.get( window.baseurl + "/api/tasks", function( results ) {
-                hud.tasks = results.data.length;
+                Dashboard.tasks = results.data.length;
             }).fail(function(e){
                 console.log( "error "+ e );
             });

@@ -16,11 +16,17 @@ class UsersTableSeeder extends Seeder {
 		DB::table('users')->insert(
 		    array(
 		    	'full_name' 		=>	$faker->name,
-		    	'email' 			=> 	'test@ribbbon.com',
+		    	'email' 			=> 	'test@psi.com',
 		    	'password'			=>	Hash::make('secret'),
 				'role'				=>  'user',
 		    	'tasks_created' 	=> 	1,
-		    	)
+			),
+			array(
+				'full_name'			=> 'admin',
+				'email'				=> 'admin@psi.com',
+				'password'			=> Hash::make('admin'),
+				'role'				=> 'admin',
+				)
 		);
 
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');

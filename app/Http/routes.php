@@ -1,4 +1,9 @@
 <?php
+use Andyabih\LaravelToUML\Http\Controllers\LaravelToUMLController;
+use Illuminate\Support\Facades\Route;
+
+Route::get(config('laravel-to-uml.route'), [LaravelToUMLController::class, 'index']);
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('register', function(){ return View::make('register')->with('pTitle', "Register"); })->name('register');
 Route::get('login', function(){ return View::make('login')->with('pTitle', "Login"); })->name('login');
@@ -14,7 +19,7 @@ Route::post('resetPassword/{id}','UsersController@resetPassword');
 //----------------- Auth routes
 Route::group(array('before' => 'auth'), function()
 {
-	Route::get('hud', 'HomeController@index')->name('hud');
+	Route::get('Dashboard', 'HomeController@index')->name('Dashboard');
 	Route::get('search', 'HomeController@search')->name('search');
 	Route::get('profile', 'UsersController@index')->name('profile');
 	Route::get('clients', 'ClientsController@index')->name('clients');
@@ -72,5 +77,7 @@ Route::group(['prefix' => '/api/'], function()
     Route::delete('credentials/{id}', 'CredentialsController@removeCredential');
 });
 
-//----------------- Admin routes
-Route::get('admin','AdminController@index');
+Route::get('admin','AdminController@index')->name('admin');
+Route::post('admin/','AdminController@addUser');
+
+

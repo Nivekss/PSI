@@ -1,12 +1,12 @@
 html, body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Courier New', monospace;
   font-size: 14px;
   height: 100%;
   color: #444;
   background-color: #f2f4f3; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Open Sans light', sans-serif;
+  font-family: 'Courier New', monospace;
   font-weight: 300; }
 
 a {
@@ -123,7 +123,7 @@ img {
   left: 0;
   width: 250px;
   height: 100%;
-  background-color: #3e3e3e;
+  background-color: #0c1441;
   color: rgba(150, 150, 150, 0.2); }
 
 .side-nav a {
@@ -187,11 +187,11 @@ img {
   font-size: .95em;
   box-sizing: border-box;
   padding: 6px 16px;
-  border-left: 4px solid #3e3e3e; }
+  border-left: 4px solid #17289b; }
 
 .side-nav .menu a:hover,
 .side-nav .menu a.active {
-  border-left: 4px solid #26b2ad;
+  border-left: 4px solid white;
   color: #fff; }
 
 .side-nav .menu a:last-child {
@@ -571,7 +571,7 @@ img {
   padding: 20px;
   margin-left: 260px;
   min-height: 100%;
-  border-top: 5px solid #26b2ad; }
+}
 
 .page-title-section > h1 {
   height: 50px; }

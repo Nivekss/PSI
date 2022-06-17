@@ -1,7 +1,9 @@
 var userObj = new Vue({
     el: '#user',
     data: {
-        user: {},
+        users: [],
+        user: null,
+        newUser: {full_name: null, email: null, password: null},
         delete_text: null,
         msg: {error: null, success: null},
     },
@@ -40,6 +42,44 @@ var userObj = new Vue({
                     // do nothing
                 }
             });
+        },
+        create: function(new_user, update){    
+            $.ajax({
+              type: 'POST',
+              url: window.baseurl + "/admin/",
+              data: {
+                email: new_user.email,
+                password: new_user.password
+            },
+              error: function(e) {
+                var response = jQuery.parseJSON(e.responseText);
+                  $('.new-user .status-msg').text("")
+                                              .removeClass('success-msg')
+                                              .addClass("error-msg")
+                                              .text(response.message);			    
+                  return false;
+              },
+    
+              success: function(result){			  		  	
+                  $('.new-user .status-msg').text("")
+                                              .removeClass('remove-msg')		  								
+                                              .addClass("success-msg")
+                                              .text(result.message);
+                            
+        		  		
+
+                  new_user.email = null;
+                  new_user.password = null;
+                $('.popup-form.new-user').find('input[type=text],textarea,select').filter(':visible:first').focus();
+              }
+            }); 
+        },
+        showCreateForm: function(){
+            this.msg.success = null;
+            this.msg.error = null;
+            this.user = null;
+            $(".new-user").show();
+            $(".new-user .first").focus();
         },
         delete: function(){
             showSheet();

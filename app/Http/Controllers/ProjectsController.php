@@ -24,7 +24,7 @@ class ProjectsController extends BaseController {
 
         // Must be refactored as a filter
 		if ( $project->isOwner() == false && $project->isMember() == false ) {
-			return Redirect::to('/hud');
+			return Redirect::to('/Dashboard');
 		}
 
 		return  View::make('ins/projects/show')->with('pTitle', $project->name);
